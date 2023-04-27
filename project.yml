@@ -1,0 +1,94 @@
+name: Healfe
+options:
+  developmentLanguage: pt-BR
+  bundleIdPrefix: br.com.luxkscastro
+  deploymentTarget:
+    iOS: 15.0
+
+settings:
+    base:
+      SWIFT_VERSION: 5.0
+
+schemes:
+  HealfeDev:
+    build:
+      targets:
+        HealfeDev: all
+    analyze:
+      config: Debug
+    test:
+      config: Debug
+    run:
+      config: Debug
+    profile:
+      config: Debug
+    archive:
+      config: Debug
+      revealArchiveInOrganizer: true
+
+    Healfe:
+      build:
+        targets:
+          Healfe: all
+      analyze:
+        config: Release
+      test:
+        config: Release
+      run:
+        config: Release
+      profile:
+        config: Release
+      archive:
+        config: Release
+        revealArchiveInOrganizer: true
+
+targets:
+  HealfeDev:
+    templates:
+      - Base
+    templateAttributes:
+      target: Dev
+    settings:
+      base:
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        PRODUCT_BUNDLE_IDENTIFIER: br.com.luxkscastro-dev
+
+  Healfe:
+    templates:
+      - Base
+    templateAttributes:
+      target: Prod
+    settings:
+      base:
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        PRODUCT_BUNDLE_IDENTIFIER: br.com.luxkscastro
+    sources:
+      - Healfe
+
+targetTemplates:
+  Base:
+    type: application
+    platform: iOS
+    entitlements:
+      path: ./TargetFiles/All/Healfe.entitlements
+      properties:
+        aps-environment: development
+    
+    sources:
+      - path: Healfe
+      - path: ./TargetFiles/All
+        group: Healfe/TargetFiles
+      - path: ./TargetFiles/${target}
+        group: Healfe/TargetFiles
+
+    settings:
+      base:
+        # System
+        TARGETED_DEVICE_FAMILY: 1
+        INFOPLIST_FILE: ./TargetFiles/All/Info.plist
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+
+        # Custom
+        DISPLAY_NAME: Healfe
