@@ -20,4 +20,3 @@ Destinated to the Healfe app. Its initial objective is to help people control wh
 - Multi repos
 - Animations
 - Alamofire
-- Arquitetura VIPER
