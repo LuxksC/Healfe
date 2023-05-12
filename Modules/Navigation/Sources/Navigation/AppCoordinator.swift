@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import HomeFeature
 
 public protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }

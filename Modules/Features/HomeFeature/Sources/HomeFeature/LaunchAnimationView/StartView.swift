@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct StartView: View {
+public struct StartView: View {
+    public init() {}
     @State private var animateBool = false
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             Color.green.ignoresSafeArea()
             ZStack {
@@ -28,21 +29,20 @@ struct StartView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 90, alignment: Alignment.topTrailing)
-                    .offset(x: 0, y: -45)
-                    .rotationEffect(.degrees(animateBool ? 4470 : 150))
+                    .offset(y: -45)
+                    .rotationEffect(.degrees(animateBool ? 1950 : 150))
             }
             .padding()
         }
-        .onAppear {
-            withAnimation(.easeInOut(duration: 3)) {
+        .onAppear {            withAnimation(.timingCurve(0.8, 0, 0.2, 1, duration: 3)) {
                 animateBool.toggle()
             }
         }
     }
 }
 
-struct StartViewPreviews: PreviewProvider {
-    static var previews: some View {
+public struct StartViewPreviews: PreviewProvider {
+    public static var previews: some View {
         StartView()
     }
 }

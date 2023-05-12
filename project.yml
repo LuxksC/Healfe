@@ -1,6 +1,15 @@
 name: Healfe
+packages:
+  # Internal
+  Navigation:
+    path: ./Modules/Navigation
+  HomeFeature:
+    path: ./Modules/Features/HomeFeature
+
 options:
+  createIntermediateGroups: false
   developmentLanguage: pt-BR
+  localPackagesGroup: Modules
   bundleIdPrefix: br.com.luxkscastro
   deploymentTarget:
     iOS: 15.0
@@ -92,3 +101,8 @@ targetTemplates:
 
         # Custom
         DISPLAY_NAME: Healfe
+
+    dependencies:
+      #Internal
+      - package: Navigation
+      - package: HomeFeature
