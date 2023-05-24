@@ -12,13 +12,14 @@ let package = Package(
             targets: ["HomeFeature"]),
     ],
     dependencies: [
+        .package(name: "healfe-design-system", path: "../../../../healfe-design-system")
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "HomeFeature",
-            dependencies: []),
+            dependencies: [
+                .product(name: "DesignSystem", package: "healfe-design-system"),
+            ]),
         .testTarget(
             name: "HomeFeatureTests",
             dependencies: ["HomeFeature"]),

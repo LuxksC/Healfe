@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DesignSystem
 
 public struct StartView: View {
     public init() {}
@@ -13,7 +14,7 @@ public struct StartView: View {
 
     public var body: some View {
         ZStack {
-            Color.green.ignoresSafeArea()
+            DS.Colors.mainColor.ignoresSafeArea()
             ZStack {
                 Image("clock")
                     .resizable()
