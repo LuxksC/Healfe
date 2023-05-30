@@ -12,13 +12,16 @@ let package = Package(
             targets: ["HomeFeature"]),
     ],
     dependencies: [
-        .package(name: "healfe-design-system", path: "../../../../healfe-design-system")
+        .package(name: "healfe-design-system", path: "../../../../healfe-design-system"),
+        .package(name: "healfe-commons", path: "../../../../healfe-commons")
     ],
     targets: [
         .target(
             name: "HomeFeature",
             dependencies: [
                 .product(name: "DesignSystem", package: "healfe-design-system"),
+                .product(name: "CommonObjects", package: "healfe-commons"),
+                .product(name: "CommonExtensions", package: "healfe-commons")
             ]),
         .testTarget(
             name: "HomeFeatureTests",

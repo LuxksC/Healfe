@@ -31,7 +31,6 @@ public class AppCoordinator: Coordinator {
 
     private func startApp() {
         let vc = UIHostingController(rootView: StartView())
-//        let vc = StartViewController()
         navigationController.setViewControllers([vc], animated: false)
     }
 }

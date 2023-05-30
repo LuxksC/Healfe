@@ -7,36 +7,48 @@
 
 import SwiftUI
 import DesignSystem
+import CommonExtensions
 
 public struct StartView: View {
     public init() {}
-    @State private var animateBool = false
+
+    @State private var animationPercentage = 0.0
+    @State private var blockAnimationCompletion = false
 
     public var body: some View {
+        let animationEnded = animationPercentage == 1.0
+        
         ZStack {
             DS.Colors.mainColor.ignoresSafeArea()
             ZStack {
                 Image("clock")
                     .resizable()
                     .scaledToFit()
-                    .padding(animateBool ? 8 : 175)
+                    .padding(animationEnded ? 8 : 175)
                 Image("knife")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 90, alignment: Alignment.bottom)
                     .offset(y: -40)
-                    .rotationEffect(.degrees(animateBool ? 360 : 0))
+                    .rotationEffect(.degrees(animationEnded ? 360 : 0))
                 Image("fork")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 90, alignment: Alignment.topTrailing)
                     .offset(y: -45)
-                    .rotationEffect(.degrees(animateBool ? 1950 : 150))
+                    .rotationEffect(.degrees(animationEnded ? 1950 : 150))
             }
             .padding()
         }
-        .onAppear {            withAnimation(.timingCurve(0.8, 0, 0.2, 1, duration: 3)) {
-                animateBool.toggle()
+        .onAnimationCompleted(for: animationPercentage) {
+            if !blockAnimationCompletion {
+                print("Animation Completed")
+                blockAnimationCompletion = true
+            }
+        }
+        .onAppear {
+            withAnimation(.timingCurve(0.8, 0, 0.2, 1, duration: 3)) {
+                animationPercentage = 1.0
             }
         }
     }
