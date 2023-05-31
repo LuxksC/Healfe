@@ -30,7 +30,13 @@ public class AppCoordinator: Coordinator {
     }
 
     private func startApp() {
-        let vc = UIHostingController(rootView: StartView())
+        let vc = UIHostingController(rootView: StartView(delegate: self))
         navigationController.setViewControllers([vc], animated: false)
+    }
+}
+
+extension AppCoordinator: StartViewSceneDelegate {
+    public func showHome() {
+        print("AppCoordinator is sending this message")
     }
 }

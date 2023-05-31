@@ -9,8 +9,16 @@ import SwiftUI
 import DesignSystem
 import CommonExtensions
 
+public protocol StartViewSceneDelegate {
+    func showHome()
+}
+
 public struct StartView: View {
-    public init() {}
+    var delegate: StartViewSceneDelegate
+    
+    public init(delegate: StartViewSceneDelegate) {
+        self.delegate = delegate
+    }
 
     @State private var animationPercentage = 0.0
     @State private var blockAnimationCompletion = false
@@ -42,7 +50,7 @@ public struct StartView: View {
         }
         .onAnimationCompleted(for: animationPercentage) {
             if !blockAnimationCompletion {
-                print("Animation Completed")
+                delegate.showHome()
                 blockAnimationCompletion = true
             }
         }
@@ -54,8 +62,8 @@ public struct StartView: View {
     }
 }
 
-public struct StartViewPreviews: PreviewProvider {
-    public static var previews: some View {
-        StartView()
-    }
-}
+//public struct StartViewPreviews: PreviewProvider {
+//    public static var previews: some View {
+//        StartView(delegate: <#StartViewSceneDelegate#>)
+//    }
+//}
