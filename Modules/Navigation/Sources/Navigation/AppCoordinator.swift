@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import HomeFeature
 
+//TODO: - Esse protocol precisa ficar em um lugar mais genérico
 public protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get }
@@ -30,13 +31,17 @@ public class AppCoordinator: Coordinator {
     }
 
     private func startApp() {
-        let vc = UIHostingController(rootView: StartView(delegate: self))
-        navigationController.setViewControllers([vc], animated: false)
+        let viewController = UIHostingController(rootView: StartSplashView(delegate: self))
+        navigationController.setViewControllers([viewController], animated: false)
     }
 }
 
-extension AppCoordinator: StartViewSceneDelegate {
+//MARK: - HomeFeature
+
+extension AppCoordinator: StartSplashViewSceneDelegate {
     public func showHome() {
-        print("AppCoordinator is sending this message")
+        let coordinator = HomeCoordinator(parentCoordinator: self, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  StartView.swift
+//  StartSplashView.swift
 //  Healfe
 //
 //  Created by Sandra Monteiro de Castro on 12/04/23.
@@ -9,14 +9,11 @@ import SwiftUI
 import DesignSystem
 import CommonExtensions
 
-public protocol StartViewSceneDelegate {
-    func showHome()
-}
-
-public struct StartView: View {
-    var delegate: StartViewSceneDelegate
+//TODO: - Adicionar uma View Model a essa struct através de injeção de dependências
+public struct StartSplashView: View {
+    var delegate: StartSplashViewSceneDelegate
     
-    public init(delegate: StartViewSceneDelegate) {
+    public init(delegate: StartSplashViewSceneDelegate) {
         self.delegate = delegate
     }
 
@@ -62,8 +59,3 @@ public struct StartView: View {
     }
 }
 
-//public struct StartViewPreviews: PreviewProvider {
-//    public static var previews: some View {
-//        StartView(delegate: <#StartViewSceneDelegate#>)
-//    }
-//}
