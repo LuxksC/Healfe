@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Navigation
+import DI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,8 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let appWindow = UIWindow()
         appWindow.windowScene = windowScene
+        
+        // TODO: - Chamar o setupDI da classe DependencyInjector aqui, antes de iniciar o AppCoordinator
+        let injector = DependencyInjector()
 
-        appCoordinator = AppCoordinator(navigationController: navController)
+//        appCoordinator = AppCoordinator(navigationController: navController)
+        appCoordinator = injector.container.resolve(AppCoordinator.self)
         appCoordinator?.start()
 
         appWindow.rootViewController = navController

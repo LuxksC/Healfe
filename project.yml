@@ -5,6 +5,8 @@ packages:
     path: ./Modules/Navigation
   HomeFeature:
     path: ./Modules/Features/HomeFeature
+  DI:
+    path: ./Modules/DI
 
 options:
   createIntermediateGroups: false
@@ -106,3 +108,4 @@ targetTemplates:
       #Internal
       - package: Navigation
       - package: HomeFeature
+      - package: DI
